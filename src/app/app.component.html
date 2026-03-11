@@ -1,0 +1,66 @@
+
+
+<div class="contenedor-principal">
+
+  <header class="encabezado">
+    <h1>🛸 Personajes de Rick and Morty</h1>
+  </header>
+
+  <div class="buscador">
+    <input
+      type="text"
+      placeholder="Buscar personaje por nombre..."
+      [(ngModel)]="nombreBusqueda"
+      (keyup.enter)="buscarPersonaje()"
+      class="input-busqueda"
+    />
+    <button (click)="buscarPersonaje()" class="boton-buscar">
+      🔍 Buscar
+    </button>
+    <button (click)="limpiarBusqueda()" class="boton-limpiar">
+      ✖ Limpiar
+    </button>
+  </div>
+
+  <div *ngIf="cargando" class="mensaje-cargando">
+    <p>⏳ Cargando personajes... por favor espera</p>
+  </div>
+
+  <div *ngIf="hayError && !cargando" class="mensaje-error">
+    <p>❌ No se encontraron personajes con ese nombre. ¡Intenta con otro!</p>
+  </div>
+
+  <div *ngIf="!cargando && !hayError" class="contador">
+    <p>Se encontraron <strong>{{ personajes.length }}</strong> personajes</p>
+  </div>
+
+  <div class="grid-tarjetas">
+    <div
+      *ngFor="let personaje of personajes"
+      class="tarjeta"
+    >
+      <img [src]="personaje.image" [alt]="personaje.name" class="imagen-personaje" />
+
+
+      <div class="info-personaje">
+
+
+        <h2 class="nombre">{{ personaje.name }}</h2>
+
+        <p class="estado">
+          <span class="punto" [ngClass]="getColorEstado(personaje.status)">●</span>
+          <strong>Estado:</strong> {{ personaje.status }}
+        </p>
+
+
+        <p><strong>Especie:</strong> {{ personaje.species }}</p>
+
+        <p><strong>Género:</strong> {{ personaje.gender }}</p>
+
+        <p><strong>Origen:</strong> {{ personaje.origin.name }}</p>
+
+      </div>
+    </div>
+  </div>
+
+</div>

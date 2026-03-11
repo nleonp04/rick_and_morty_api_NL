@@ -1,0 +1,18 @@
+# Ignorar la carpeta de dependencias (es muy pesada)
+node_modules/
+
+# Ignorar archivos compilados
+dist/
+out-tsc/
+.angular/
+
+# Ignorar archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de entorno con datos sensibles
+.env
+*.env
+
+# Archivos de caché
+.cache/
